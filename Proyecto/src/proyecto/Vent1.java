@@ -47,9 +47,9 @@ public class Vent1 extends javax.swing.JFrame {
 
         jButton2.setText("Ver registros");
 
-        jButton3.setText("jButton1");
+        jButton3.setText(".");
 
-        jButton4.setText("jButton1");
+        jButton4.setText(".");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
