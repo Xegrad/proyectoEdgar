@@ -77,7 +77,7 @@ public class NewVenta extends javax.swing.JFrame {
 
         jLabel11.setText("Código");
 
-        jLabel12.setText("Fecha");
+        jLabel12.setText("Precio");
 
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +87,7 @@ public class NewVenta extends javax.swing.JFrame {
 
         jLabel13.setText("Cantidad");
 
-        jLabel15.setText("Precio");
+        jLabel15.setText("Fecha");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
