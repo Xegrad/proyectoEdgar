@@ -39,8 +39,6 @@ public class Menu extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuExit = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuRC = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuC = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -77,7 +75,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Eliga una opción del menú para continuar");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Escoga una opción de la barra de menú para continuar.");
 
         jMenu1.setText("Inventario");
 
@@ -102,25 +101,13 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setText("Compras");
 
-        jMenuRC.setText("Registrar compra");
-
-        jMenuItem3.setText("Producto existente");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenuRC.add(jMenuItem3);
-
-        jMenuItem1.setText("Producto nuevo");
+        jMenuItem1.setText("Registrar compra");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenuRC.add(jMenuItem1);
-
-        jMenu4.add(jMenuRC);
+        jMenu4.add(jMenuItem1);
 
         jMenuC.setText("Registro de compras");
         jMenuC.addActionListener(new java.awt.event.ActionListener() {
@@ -158,28 +145,30 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(380, Short.MAX_VALUE)
+                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(91, 91, 91)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -195,7 +184,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCActionPerformed
         // TODO add your handling code here:
-        new RegCompra().setVisible(true);
+        new RegistroCompra().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuCActionPerformed
 
@@ -207,31 +196,25 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVActionPerformed
         // TODO add your handling code here:
-        new RegVenta().setVisible(true);
+        new RegistroVentas().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuVActionPerformed
 
     private void jMenuRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRVActionPerformed
         // TODO add your handling code here:
-        new NewVentaFrame().setVisible(true);
+        new VentaFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuRVActionPerformed
 
     private void jMenuInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInvActionPerformed
         // TODO add your handling code here:
-        new Inventario().setVisible(true);
+        new RegistroInventario().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuInvActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        new NewCompraE().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new NewCompraFrame().setVisible(true);
+        new CompraFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -286,8 +269,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuInv;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenu jMenuRC;
     private javax.swing.JMenuItem jMenuRV;
     private javax.swing.JMenuItem jMenuV;
     private javax.swing.JPopupMenu.Separator jSeparator1;
