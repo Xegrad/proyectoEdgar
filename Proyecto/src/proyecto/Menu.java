@@ -31,19 +31,19 @@ public class Menu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
-        jButtonExit = new javax.swing.JButton();
+        btExit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuInv = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuExit = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuC = new javax.swing.JMenuItem();
+        menuNewC = new javax.swing.JMenuItem();
+        menuRegC = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuRV = new javax.swing.JMenuItem();
-        jMenuV = new javax.swing.JMenuItem();
+        menuNewV = new javax.swing.JMenuItem();
+        menuRegV = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menuInv = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menuEx = new javax.swing.JMenuItem();
 
         jInternalFrame1.setVisible(true);
 
@@ -68,76 +68,86 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bienvenido.");
 
-        jButtonExit.setText("Salir");
-        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+        btExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/back.gif"))); // NOI18N
+        btExit.setIconTextGap(15);
+        btExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExitActionPerformed(evt);
+                btExitActionPerformed(evt);
             }
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Escoga una opción de la barra de menú para continuar.");
 
-        jMenu1.setText("Inventario");
-
-        jMenuInv.setText("Inventario");
-        jMenuInv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuInvActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuInv);
-        jMenu1.add(jSeparator1);
-
-        jMenuExit.setText("Salir");
-        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuExitActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuExit);
-
-        jMenuBar1.add(jMenu1);
-
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/compra.gif"))); // NOI18N
         jMenu4.setText("Compras");
 
-        jMenuItem1.setText("Registrar compra");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuNewC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/ncompra.gif"))); // NOI18N
+        menuNewC.setText("Registrar compra");
+        menuNewC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuNewCActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu4.add(menuNewC);
 
-        jMenuC.setText("Registro de compras");
-        jMenuC.addActionListener(new java.awt.event.ActionListener() {
+        menuRegC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/rcompra.gif"))); // NOI18N
+        menuRegC.setText("Registro de compras");
+        menuRegC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCActionPerformed(evt);
+                menuRegCActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuC);
+        jMenu4.add(menuRegC);
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/venta.gif"))); // NOI18N
         jMenu5.setText("Ventas");
 
-        jMenuRV.setText("Registrar venta");
-        jMenuRV.addActionListener(new java.awt.event.ActionListener() {
+        menuNewV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/nventa.gif"))); // NOI18N
+        menuNewV.setText("Registrar venta");
+        menuNewV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuRVActionPerformed(evt);
+                menuNewVActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuRV);
+        jMenu5.add(menuNewV);
 
-        jMenuV.setText("Registro de ventas");
-        jMenuV.addActionListener(new java.awt.event.ActionListener() {
+        menuRegV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/rventa.gif"))); // NOI18N
+        menuRegV.setText("Registro de ventas");
+        menuRegV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuVActionPerformed(evt);
+                menuRegVActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuV);
+        jMenu5.add(menuRegV);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/inv.gif"))); // NOI18N
+        jMenu1.setText("Inventario");
+
+        menuInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/view.gif"))); // NOI18N
+        menuInv.setText("Ver inventario");
+        menuInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInvActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuInv);
+        jMenu1.add(jSeparator1);
+
+        menuEx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/backm.png"))); // NOI18N
+        menuEx.setText("Regresar");
+        menuEx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuExActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuEx);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -148,9 +158,6 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(380, Short.MAX_VALUE)
-                        .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(101, 101, 101)
@@ -158,7 +165,10 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(71, 71, 71)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 64, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,55 +178,55 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+    private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonExitActionPerformed
+    }//GEN-LAST:event_btExitActionPerformed
 
-    private void jMenuCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCActionPerformed
+    private void menuRegCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegCActionPerformed
         // TODO add your handling code here:
         new RegistroCompra().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuCActionPerformed
+    }//GEN-LAST:event_menuRegCActionPerformed
 
-    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed
+    private void menuExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuExitActionPerformed
+    }//GEN-LAST:event_menuExActionPerformed
 
-    private void jMenuVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVActionPerformed
+    private void menuRegVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegVActionPerformed
         // TODO add your handling code here:
         new RegistroVentas().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuVActionPerformed
+    }//GEN-LAST:event_menuRegVActionPerformed
 
-    private void jMenuRVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRVActionPerformed
+    private void menuNewVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewVActionPerformed
         // TODO add your handling code here:
         new VentaFrame().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuRVActionPerformed
+    }//GEN-LAST:event_menuNewVActionPerformed
 
-    private void jMenuInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInvActionPerformed
+    private void menuInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInvActionPerformed
         // TODO add your handling code here:
         new RegistroInventario().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuInvActionPerformed
+    }//GEN-LAST:event_menuInvActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuNewCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewCActionPerformed
         // TODO add your handling code here:
         new CompraFrame().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuNewCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +265,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton btExit;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -264,13 +274,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuC;
-    private javax.swing.JMenuItem jMenuExit;
-    private javax.swing.JMenuItem jMenuInv;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuRV;
-    private javax.swing.JMenuItem jMenuV;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem menuEx;
+    private javax.swing.JMenuItem menuInv;
+    private javax.swing.JMenuItem menuNewC;
+    private javax.swing.JMenuItem menuNewV;
+    private javax.swing.JMenuItem menuRegC;
+    private javax.swing.JMenuItem menuRegV;
     // End of variables declaration//GEN-END:variables
 }
