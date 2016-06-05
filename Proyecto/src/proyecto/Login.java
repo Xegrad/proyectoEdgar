@@ -105,7 +105,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 2, 8)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 153, 255));
-        jLabel4.setText("v0.86.1");
+        jLabel4.setText("v0.86.7");
         jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
