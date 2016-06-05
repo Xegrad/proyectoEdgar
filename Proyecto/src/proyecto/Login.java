@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Login Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto;
 
 import java.awt.Rectangle;
 import java.io.*;
+import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -19,17 +17,16 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Project
      */
-    boolean estadoFoco = false;
     public Login() {
         setContentPane(new JLabel(new ImageIcon("rwall.png")));
         initComponents();
     }
+
     @Override
     public Rectangle bounds() {
         return super.bounds(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,7 +105,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 2, 8)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 153, 255));
-        jLabel4.setText("v0.16");
+        jLabel4.setText("v0.86.1");
         jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,42 +176,35 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-//        // TODO add your handling code here:
-//        Icon iconT = new ImageIcon ("C:/Users/Pxk/Downloads/proyectoEdgar/tick1.png");
-//        Icon iconF = new ImageIcon ("C:/Users/Pxk/Downloads/proyectoEdgar/x1.png");
-//        String admin = "admin", pwd = "555";
-//        if(txtUser.getText().equals(admin)&&txtPass.getText().equals(pwd)){
-//            new Menu().setVisible(true);
-//            this.setVisible(false);
-//        } else if(!txtUser.getText().equals(admin)||!txtPass.getText().equals(pwd)){
-//            iconLabel.setText("Usuario o contraseña incorrectos");   
-//            iconLabel.setIcon(iconF);
-//        }
-        
+        //<editor-fold defaultstate="collapsed" desc="codigo validaforma">
+
         int valida = validaForma();
-        if(valida == 0) {
-            if(validaUsuario(txtUser.getText(), txtPass.getPassword()) != 0)
-            {
-                Menu objMenu = new Menu();
-                this.setVisible(false);
-                objMenu.setVisible(true);
+        if (valida == 0) {
+            try {
+                if (validaUsuario() == true) {
+                    Menu objMenu = new Menu();
+                    this.setVisible(false);
+                    objMenu.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+                    txtUser.setText("");
+                    txtPass.setText("");
+                    txtUser.requestFocus();
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else {
-                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
-                txtUser.setText("");
-                txtPass.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario y contraseña son requeridos");
+            if (valida == 2) {
+                txtPass.requestFocus();
+            } else {
                 txtUser.requestFocus();
             }
         }
-        else {
-            JOptionPane.showMessageDialog(null, "El nombre de usuario y contraseña son requeridos");
-            if(valida == 2)
-                txtPass.requestFocus();
-            else
-               txtUser.requestFocus(); 
-        }            
-        
-        
+        //</editor-fold>  
+
+
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void btRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegisterActionPerformed
@@ -223,9 +213,6 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btRegisterActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -248,10 +235,6 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -260,54 +243,42 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
-        
+        //</editor-fold>
     }
-    
-     public int validaForma() {
+
+    //<editor-fold defaultstate="collapsed" desc="codigo validaforma">
+    public int validaForma() {
         int controlFalta = 0;
-        //boolean correcto = false;
-        
-        if((txtUser.getText().isEmpty()))
+
+        if ((txtUser.getText().isEmpty())) {
             controlFalta += 1;
-        if((txtPass.getPassword().length) == 0)
-            controlFalta +=2;
-        
-        /*if(!(txtNomUsuario.getText().isEmpty()) && (txtPassword.getPassword().length) >0)
-            correcto = true;*/
-        
+        }
+        if ((txtPass.getPassword().length) == 0) {
+            controlFalta += 2;
+        }
         return controlFalta;
     }
-     
-     public int validaUsuario(String userName, 
-            char[] pass) {
-        int tipoUsuario = 0;
-        
+
+    public boolean validaUsuario() throws ClassNotFoundException {
+        String sql = "SELECT nombreUs,password FROM users WHERE (nombreUs = ? AND password = ?)";
+        boolean login = false;
+        ConnectDB conn = new ConnectDB();
         try {
-            File archivo = new File("users.txt");
-            if(archivo.exists()) {
-                BufferedReader br = new BufferedReader(new FileReader("users.txt"));
-                String linea;
-                while((linea = br.readLine()) != null) {
-                    StringTokenizer st = new StringTokenizer(linea, ",");
-                    String user = st.nextToken().trim();
-                    String password = st.nextToken().trim();                    
-                    char[] clave = password.toCharArray();
-                    if ((user.equals(userName)) && 
-                            (Arrays.equals(clave, pass))) {
-                        tipoUsuario = Integer.parseInt(st.nextToken().trim());
-                    }
-                }
-            } 
-            else {
-                JOptionPane.showMessageDialog(null, "El archivo de usuarios no existe");
+            PreparedStatement st = conn.getConnection().prepareStatement(sql);
+            st.setString(1, txtUser.getText());
+            st.setString(2, txtPass.getText());
+            ResultSet rs = st.executeQuery();
+
+            if ((rs.next())) {
+                login = true;
             }
-        
-        } 
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un error" + e);
+            conn.desconectar();
+        } catch (Exception err) {
+            System.out.println("Error: " + err);
         }
-        return tipoUsuario;
-    }   
+        return login;
+    }
+//</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;

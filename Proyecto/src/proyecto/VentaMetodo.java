@@ -2,7 +2,7 @@ package proyecto;
 
 import java.util.*;
 import javax.swing.*;
-import java.io.*;
+//import java.io.*;
 import java.sql.*;
 
 public class VentaMetodo {
@@ -88,6 +88,8 @@ public class VentaMetodo {
 */
 // </editor-fold>
     
+    
+    //insertar valores a DB
      public void addVenta(Venta venta) {
         ConnectDB conn = new ConnectDB();
         try {
@@ -96,7 +98,7 @@ public class VentaMetodo {
                     + venta.precio+  "', '" + venta.fecha+  "')";
             
             consulta.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"Venta ingresada");
+            JOptionPane.showMessageDialog(null,"Venta registrada");
             consulta.close();
             conn.desconectar();
         } catch (SQLException e) {
@@ -104,6 +106,7 @@ public class VentaMetodo {
         }
     }
 
+     //obtener valores de DB
     public ArrayList<Venta> getVenta() {
         ArrayList<Venta> arrV = new ArrayList<>();
         ConnectDB conn = new ConnectDB();
@@ -113,10 +116,10 @@ public class VentaMetodo {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Venta user = new Venta(rs.getString("Producto"),rs.getString("Codigo"),rs.getString("Cantidad"),
+                Venta ven = new Venta(rs.getString("Producto"),rs.getString("Codigo"),rs.getString("Cantidad"),
                         rs.getString("Precio"),rs.getString("Fecha"));
                 
-                arrV.add(user);
+                arrV.add(ven);
             }
             rs.close();
             ps.close();
@@ -126,5 +129,58 @@ public class VentaMetodo {
             System.out.println("Error "+e.getMessage());
         }
         return arrV;
+    }
+    
+    //borrar producto de inventario con base a una venta //aun no soportado//
+//    public void deleteProd(String codigo) {
+//        ConnectDB conn = new ConnectDB();
+//        
+//        try {
+//            Statement consulta = conn.getConnection().createStatement();
+//            String sql = "DELETE FROM Inventario WHERE Codigo = " + codigo; 
+//            
+//            consulta.executeUpdate(sql);
+//            JOptionPane.showMessageDialog(null,"Inventario actualizado.");
+//            consulta.close();
+//            conn.desconectar();
+//        } catch(SQLException e) {
+//            JOptionPane.showMessageDialog(null, "No se realizó la operación" + e);
+//        }
+//    }
+    
+    //actualizar valores
+    public void actVenta(Venta venta) {
+        ConnectDB conn = new ConnectDB();
+        
+        try {
+            Statement consulta = conn.getConnection().createStatement();
+            String sql; 
+            sql = "UPDATE ventas SET Producto = '" + venta.getProducto() + "', Cantidad = '" + venta.getQtt() + "',";
+            sql += " Precio = '" + venta.getPrecio()+ "', Fecha = '" + venta.getFecha()+ "' WHERE Codigo = '" + venta.getCode() + "' ";
+            
+            consulta.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Se han guardado los cambios");
+            consulta.close();
+            conn.desconectar();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se guardaron los cambios " + e);
+        }
+    }
+    
+    //borrar valores 
+    public void delVenta(Venta venta) {
+        ConnectDB conn = new ConnectDB();
+        
+        try {
+            Statement consulta = conn.getConnection().createStatement();
+            String sql = "DELETE FROM ventas WHERE Codigo = '" + venta.getCode() +"',"; 
+            
+            consulta.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Registro borrado");
+            consulta.close();
+            conn.desconectar();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se borro" + e);
+        }
     }
 }

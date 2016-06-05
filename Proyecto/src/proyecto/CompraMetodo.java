@@ -2,7 +2,7 @@ package proyecto;
 
 import java.util.*;
 import javax.swing.*;
-import java.io.*;
+//import java.io.*;
 import java.sql.*;
 
 public class CompraMetodo {
@@ -91,6 +91,7 @@ public class CompraMetodo {
 */
 // </editor-fold>
     
+    //insertar valores
     public void addCompra(Compra compra) {
         ConnectDB conn = new ConnectDB();
         try {
@@ -99,7 +100,7 @@ public class CompraMetodo {
                     + compra.pc + "', '" + compra.pv+ "', '" + compra.proveedor+  "', '" + compra.fecha+  "')";
             
             consulta.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"NewCompra ingresada");
+            JOptionPane.showMessageDialog(null,"Compra registrada");
             consulta.close();
             conn.desconectar();
         } catch (SQLException e) {
@@ -107,6 +108,7 @@ public class CompraMetodo {
         }
     }
 
+    //obtener valores
     public ArrayList<Compra> getCompra() {
         ArrayList<Compra> arrP = new ArrayList<>();
         ConnectDB conn = new ConnectDB();
@@ -116,10 +118,10 @@ public class CompraMetodo {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Compra user = new Compra(rs.getString("Producto"),rs.getString("Codigo"),rs.getString("Cantidad"),
+                Compra com = new Compra(rs.getString("Producto"),rs.getString("Codigo"),rs.getString("Cantidad"),
                         rs.getString("PrecioC"),rs.getString("PrecioV"),rs.getString("Proveedor"),rs.getString("Fecha"));
                 
-                arrP.add(user);
+                arrP.add(com);
             }
             rs.close();
             ps.close();
@@ -129,5 +131,41 @@ public class CompraMetodo {
             System.out.println("Error "+e.getMessage());
         }
         return arrP;
+    }
+    
+    //actualizar valores
+    public void actCompra(Compra compra) {
+        ConnectDB conn = new ConnectDB();
+        
+        try {
+            Statement consulta = conn.getConnection().createStatement();
+            String sql; 
+            sql = "UPDATE Compra SET Producto = '" + compra.getProducto() + "', Cantidad = '" + compra.getQtt() + "', PrecioC = '" + compra.getPC() + "',";
+            sql += " PrecioV = '" + compra.getPV()+  "',Proveedor = '" + compra.getProv()+  "', Fecha = '" + compra.getFecha()+  "' WHERE Codigo = '" + compra.getCode() + "' ";
+            
+            consulta.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Se han guardado los cambios");
+            consulta.close();
+            conn.desconectar();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se guardaron los cambios " + e);
+        }
+    }
+    
+    //borrar valores
+    public void delCompra(Compra compra) {
+        ConnectDB conn = new ConnectDB();
+        
+        try {
+            Statement consulta = conn.getConnection().createStatement();
+            String sql = "DELETE FROM Compra WHERE Codigo = '" + compra.getCode() +"' "; 
+            
+            consulta.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Registro borrado");
+            consulta.close();
+            conn.desconectar();
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se borro" + e);
+        }
     }
 }

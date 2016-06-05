@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto;
 
 /**
@@ -36,9 +31,13 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         menuNewC = new javax.swing.JMenuItem();
+        menuEditC = new javax.swing.JMenuItem();
+        menuDelC = new javax.swing.JMenuItem();
         menuRegC = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuNewV = new javax.swing.JMenuItem();
+        menuEditV = new javax.swing.JMenuItem();
+        menuDelV = new javax.swing.JMenuItem();
         menuRegV = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuInv = new javax.swing.JMenuItem();
@@ -91,6 +90,24 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(menuNewC);
 
+        menuEditC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/editcompra.gif"))); // NOI18N
+        menuEditC.setText("Editar compra");
+        menuEditC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEditCActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuEditC);
+
+        menuDelC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/delcompra.gif"))); // NOI18N
+        menuDelC.setText("Borrar compra");
+        menuDelC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDelCActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuDelC);
+
         menuRegC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/rcompra.gif"))); // NOI18N
         menuRegC.setText("Registro de compras");
         menuRegC.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +130,24 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu5.add(menuNewV);
+
+        menuEditV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/editventa.gif"))); // NOI18N
+        menuEditV.setText("Editar venta");
+        menuEditV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEditVActionPerformed(evt);
+            }
+        });
+        jMenu5.add(menuEditV);
+
+        menuDelV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/delventa.gif"))); // NOI18N
+        menuDelV.setText("Borrar venta");
+        menuDelV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDelVActionPerformed(evt);
+            }
+        });
+        jMenu5.add(menuDelV);
 
         menuRegV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/icons/rventa.gif"))); // NOI18N
         menuRegV.setText("Registro de ventas");
@@ -187,53 +222,64 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
-        // TODO add your handling code here:
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btExitActionPerformed
 
     private void menuRegCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegCActionPerformed
-        // TODO add your handling code here:
-        new RegistroCompra().setVisible(true);
+        new CompraRegistro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuRegCActionPerformed
 
     private void menuExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuExActionPerformed
-        // TODO add your handling code here:
         new Login().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuExActionPerformed
 
     private void menuRegVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegVActionPerformed
-        // TODO add your handling code here:
-        new RegistroVentas().setVisible(true);
+        new VentaRegistro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuRegVActionPerformed
 
     private void menuNewVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewVActionPerformed
-        // TODO add your handling code here:
         new VentaFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuNewVActionPerformed
 
     private void menuInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInvActionPerformed
-        // TODO add your handling code here:
-        new RegistroInventario().setVisible(true);
+        new InventarioFrame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuInvActionPerformed
 
     private void menuNewCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewCActionPerformed
-        // TODO add your handling code here:
         new CompraFrame().setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);        
     }//GEN-LAST:event_menuNewCActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void menuEditCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditCActionPerformed
+        new CompraFrameOp().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuEditCActionPerformed
+
+    private void menuEditVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditVActionPerformed
+        new VentaFrameOp().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuEditVActionPerformed
+
+    private void menuDelVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDelVActionPerformed
+        new VentaFrameOp().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuDelVActionPerformed
+
+    private void menuDelCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDelCActionPerformed
+        new CompraFrameOp().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuDelCActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* Set the Nimbus look and feel */
+        
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -253,8 +299,7 @@ public class Menu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -262,6 +307,7 @@ public class Menu extends javax.swing.JFrame {
                 new Menu().setVisible(true);
             }
         });
+        //</editor-fold>
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -276,6 +322,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem menuDelC;
+    private javax.swing.JMenuItem menuDelV;
+    private javax.swing.JMenuItem menuEditC;
+    private javax.swing.JMenuItem menuEditV;
     private javax.swing.JMenuItem menuEx;
     private javax.swing.JMenuItem menuInv;
     private javax.swing.JMenuItem menuNewC;

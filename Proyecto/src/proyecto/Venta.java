@@ -65,7 +65,7 @@ public class Venta {
     }
 
     String[] getRow() {
-        String[] row = new String[3];
+        String[] row = new String[5];
         row[0] = producto;
         row[1] = codigo;
         row[2] = qtt;
