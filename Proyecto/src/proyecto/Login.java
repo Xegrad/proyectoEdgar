@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Project
      */
     public Login() {
-        setContentPane(new JLabel(new ImageIcon("rwall.png")));
+        setContentPane(new JLabel(new ImageIcon("wppro.jpg")));
         initComponents();
     }
 
@@ -51,6 +51,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("ProyectoEdgar");
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        setFocusCycleRoot(false);
         setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
         setForeground(new java.awt.Color(0, 0, 0));
 
@@ -105,7 +106,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 2, 8)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 153, 255));
-        jLabel4.setText("v0.86.7");
+        jLabel4.setText("v0.87.5");
         jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,8 +266,10 @@ public class Login extends javax.swing.JFrame {
         ConnectDB conn = new ConnectDB();
         try {
             PreparedStatement st = conn.getConnection().prepareStatement(sql);
+            char tempPassword[] = txtPass.getPassword();
+            String strPassword = String.valueOf(tempPassword);
             st.setString(1, txtUser.getText());
-            st.setString(2, txtPass.getText());
+            st.setString(2, strPassword);
             ResultSet rs = st.executeQuery();
 
             if ((rs.next())) {
